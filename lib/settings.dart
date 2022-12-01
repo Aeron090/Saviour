@@ -11,6 +11,7 @@ import 'package:savior_app/privacypolicy.dart';
 import 'package:savior_app/profile.dart';
 import 'package:savior_app/subscriptionpayment.dart';
 import 'package:savior_app/terms&conditions.dart';
+import 'package:getwidget/getwidget.dart';
 
 class settings extends StatefulWidget {
   const settings({super.key});
@@ -28,6 +29,9 @@ class _settingsState extends State<settings> {
   bool isChecked = false;
   bool isChecked1 = false;
   double _value = 20;
+  bool isCheckedduration = false;
+  bool isCheckeddistance = false;
+  var shaka;
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +131,7 @@ class _settingsState extends State<settings> {
                 ),
               ),
               SizedBox(
-                height: 10.h,
+                height: 18.h,
               ),
               Container(
                 width: 389.w,
@@ -180,441 +184,617 @@ class _settingsState extends State<settings> {
                       ]),
                 ),
               ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Container(
-                width: 389.w,
-                height: 50.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  color: Color(0xffA0A1D6),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Image.asset(
-                          "assets/images/Icon feather-map.png",
-                          scale: 5,
-                        ),
-                        SizedBox(
-                          width: 28.w,
-                        ),
-                        Text(
-                          "Map Features",
-                          style:
-                              TextStyle(fontSize: 14.sp, color: Colors.white),
-                        ),
-                        SizedBox(
-                          width: 170.w,
-                        ),
-                        Image.asset(
-                          "assets/images/Icon ionic-ios-arrow-back.png",
-                          scale: 3,
-                          color: Colors.white,
-                        )
-                      ]),
-                ),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Container(
-                width: 389.w,
-                height: 50.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.r),
-                  color: Color(0xffD2D2F1),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Radius",
-                          style:
-                              TextStyle(fontSize: 14.sp, color: Colors.white),
-                        ),
-                        Container(
-                          width: 34.w,
-                          height: 15.h,
-                          child: Transform.scale(
-                            transformHitTests: false,
-                            scale: .6,
-                            child: CupertinoSwitch(
-                              trackColor: Color(0xff62639E),
-                              // This bool value toggles the switch.
-                              value: switchValue2,
-                              activeColor: Color(0xff28C93E),
-
-                              onChanged: (bool? value) {
-                                // This is called when the user toggles the switch.
-                                setState(() {
-                                  switchValue2 = value ?? false;
-                                });
-                              },
-                            ),
-                          ),
-                        ),
-                      ]),
-                ),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
+              10.verticalSpace,
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18.5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: 185.w,
-                      height: 45.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.r),
-                        color: Color(0xffD2D2F1),
-                      ),
-                      child: Row(
-                        children: [
-                          Checkbox(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.r),
-                              ),
-                              checkColor: Color(0xff4B4BFF),
-                              activeColor: Color.fromARGB(255, 245, 238, 238),
-                              value: isChecked,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isChecked = value!;
-                                });
-                              }),
-                          Text(
-                            "Kilometer",
-                            style: TextStyle(
-                                fontSize: 14.sp, color: Color(0xff303030)),
-                          ),
-                        ],
-                      ),
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+                child: GFAccordion(
+                  titleBorderRadius: BorderRadius.circular(10.r),
+                  contentBackgroundColor: Color(0xffECECFE),
+                  expandedTitleBackgroundColor: Color(0xffA0A1D6),
+                  // margin: EdgeInsets.zero,
+                  // contentPadding: EdgeInsets.symmetric(vertical: 15),
+                  collapsedTitleBackgroundColor: Color(0xffA0A1D6),
+                  showAccordion: false,
+
+                  titleChild: Container(
+                    // width: 370.w,
+                    height: 29.5.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.r),
+                      color: Color(0xffA0A1D6),
                     ),
-                    Container(
-                      width: 185.w,
-                      height: 45.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.r),
-                        color: Color(0xffD2D2F1),
-                      ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
                       child: Row(
-                        children: [
-                          Checkbox(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.r),
-                              ),
-                              checkColor: Color(0xff4B4BFF),
-                              activeColor: Color.fromARGB(255, 245, 238, 238),
-                              value: isChecked1,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isChecked1 = value!;
-                                });
-                              }),
-                          Text(
-                            "Miles",
-                            style: TextStyle(
-                                fontSize: 14.sp, color: Color(0xff303030)),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Container(
-                width: 389.w,
-                height: 50.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.r),
-                  color: Color(0xffD2D2F1),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "4m",
-                          style:
-                              TextStyle(fontSize: 16.sp, color: Colors.black),
-                        ),
-                        Container(
-                          width: 280.w,
-                          child: CupertinoSlider(
-                            thumbColor: Color(0xff62639E),
-                            activeColor: Colors.grey,
-                            min: 0.0,
-                            max: 100.0,
-                            value: _value,
-                            onChanged: (value) {
-                              setState(() {
-                                _value = value;
-                              });
-                            },
-                          ),
-                        ),
-                        Text(
-                          "25m",
-                          style:
-                              TextStyle(fontSize: 16.sp, color: Colors.black),
-                        ),
-                      ]),
-                ),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Container(
-                width: 389.w,
-                height: 50.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.r),
-                  color: Color(0xffD2D2F1),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Hotspot",
-                          style:
-                              TextStyle(fontSize: 14.sp, color: Colors.black),
-                        ),
-                        Container(
-                          width: 34.w,
-                          height: 15.h,
-                          child: Transform.scale(
-                            transformHitTests: false,
-                            scale: .6,
-                            child: CupertinoSwitch(
-                              trackColor: Color(0xff62639E),
-                              // This bool value toggles the switch.
-                              value: switchValue3,
-                              activeColor: Color(0xff28C93E),
-
-                              onChanged: (bool? value) {
-                                // This is called when the user toggles the switch.
-                                setState(() {
-                                  switchValue3 = value ?? false;
-                                });
-                              },
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              "assets/images/Icon feather-map.png",
+                              scale: 4,
                             ),
-                          ),
-                        ),
-                      ]),
-                ),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Container(
-                width: 389.w,
-                height: 50.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.r),
-                  color: Color(0xffD2D2F1),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Zone",
-                          style:
-                              TextStyle(fontSize: 14.sp, color: Colors.black),
-                        ),
-                        Container(
-                          width: 34.w,
-                          height: 15.h,
-                          child: Transform.scale(
-                            transformHitTests: false,
-                            scale: .6,
-                            child: CupertinoSwitch(
-                              trackColor: Color(0xff62639E),
-                              // This bool value toggles the switch.
-                              value: switchValue4,
-                              activeColor: Color(0xff28C93E),
-
-                              onChanged: (bool? value) {
-                                // This is called when the user toggles the switch.
-                                setState(() {
-                                  switchValue4 = value ?? false;
-                                });
-                              },
+                            SizedBox(
+                              width: 28.w,
                             ),
-                          ),
-                        ),
-                      ]),
-                ),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Container(
-                width: 389.w,
-                height: 50.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  color: Color(0xffA0A1D6),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Image.asset(
-                          "assets/images/Icon feather-settings.png",
-                          scale: 5,
-                        ),
-                        SizedBox(
-                          width: 28.w,
-                        ),
-                        Text(
-                          "General",
-                          style:
-                              TextStyle(fontSize: 14.sp, color: Colors.white),
-                        ),
-                        SizedBox(
-                          width: 220.w,
-                        ),
-                        Image.asset(
-                          "assets/images/Icon ionic-ios-arrow-back.png",
-                          scale: 3.5,
-                          color: Colors.white,
-                        )
-                      ]),
-                ),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(() => UserProfile1());
-                },
-                child: Container(
-                  width: 389.w,
-                  height: 50.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.r),
-                    color: Color(0xffD2D2F1),
+                            Text(
+                              "Map Features",
+                              style: TextStyle(
+                                  fontSize: 14.sp, color: Colors.white),
+                            ),
+                          ]),
+                    ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
+
+                  textStyle: TextStyle(color: Colors.amber, fontSize: 16),
+                  collapsedIcon: Padding(
+                    padding: EdgeInsets.only(right: 12),
+                    child: Icon(
+                      Icons.arrow_drop_down_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+
+                  expandedIcon: Padding(
+                    padding: EdgeInsets.only(right: 12),
+                    child: Icon(
+                      Icons.arrow_drop_up_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                  contentChild: Column(
+                    children: [
+                      Container(
+                        width: 389.w,
+                        height: 50.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.r),
+                          color: Color(0xffD2D2F1),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Radius",
+                                  style: TextStyle(
+                                      fontSize: 14.sp, color: Colors.white),
+                                ),
+                                Container(
+                                  width: 34.w,
+                                  height: 15.h,
+                                  child: Transform.scale(
+                                    transformHitTests: false,
+                                    scale: .6,
+                                    child: CupertinoSwitch(
+                                      trackColor: Color(0xff62639E),
+                                      // This bool value toggles the switch.
+                                      value: switchValue2,
+                                      activeColor: Color(0xff28C93E),
+
+                                      onChanged: (bool? value) {
+                                        // This is called when the user toggles the switch.
+                                        setState(() {
+                                          switchValue2 = value ?? false;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "Profile",
-                            style:
-                                TextStyle(fontSize: 14.sp, color: Colors.black),
+                          Container(
+                            width: 175.w,
+                            height: 45.h,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5.r),
+                              color: Color(0xffD2D2F1),
+                            ),
+                            child: Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      shaka = 1;
+                                      switchValue4 = false;
+                                    });
+                                  },
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 15),
+                                    child: Container(
+                                      height: 20,
+                                      width: 20,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(
+                                            width: 2.w, color: Colors.black),
+                                      ),
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.check,
+                                          size: 16,
+                                          color: shaka == 1
+                                              ? Colors.green
+                                              : Colors.transparent,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                // Checkbox(
+                                //     shape: RoundedRectangleBorder(
+                                //       borderRadius: BorderRadius.circular(5.r),
+                                //     ),
+                                //     checkColor: Color(0xff4B4BFF),
+                                //     activeColor:
+                                //         Color.fromARGB(255, 245, 238, 238),
+                                //     value: isChecked,
+                                //     onChanged: (value) {
+                                //       if (isChecked == true) {
+                                //         setState(() {
+                                //           isChecked = value!;
+                                //         });
+                                //       }
+                                //     }),
+                                5.horizontalSpace,
+                                Text(
+                                  "Kilometer",
+                                  style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: Color(0xff303030)),
+                                ),
+                              ],
+                            ),
                           ),
-                        ]),
+                          Container(
+                            width: 175.w,
+                            height: 45.h,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5.r),
+                              color: Color(0xffD2D2F1),
+                            ),
+                            child: Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      shaka = 2;
+                                      switchValue4 = false;
+                                    });
+                                  },
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 15),
+                                    child: Container(
+                                      height: 20,
+                                      width: 20,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(
+                                            color: Colors.black, width: 2.w),
+                                      ),
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.check,
+                                          size: 16,
+                                          color: shaka == 2
+                                              ? Colors.green
+                                              : Colors.transparent,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                // Checkbox(
+                                //     shape: RoundedRectangleBorder(
+                                //       borderRadius: BorderRadius.circular(5.r),
+                                //     ),
+                                //     checkColor: Color(0xff4B4BFF),
+                                //     activeColor:
+                                //         Color.fromARGB(255, 245, 238, 238),
+                                //     value: isChecked,
+                                //     onChanged: (value) {
+                                //       if (isChecked == true) {
+                                //         setState(() {
+                                //           isChecked = value!;
+                                //         });
+                                //       }
+                                //     }),
+                                Text(
+                                  "Miles",
+                                  style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: Color(0xff303030)),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Container(
+                        width: 389.w,
+                        height: 50.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.r),
+                          color: Color(0xffD2D2F1),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "4m",
+                                  style: TextStyle(
+                                      fontSize: 16.sp, color: Colors.black),
+                                ),
+                                Container(
+                                  width: 250.w,
+                                  child: CupertinoSlider(
+                                    thumbColor: Color(0xff62639E),
+                                    activeColor: Colors.grey,
+                                    min: 0.0,
+                                    max: 100.0,
+                                    value: _value,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _value = value;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                Text(
+                                  "25m",
+                                  style: TextStyle(
+                                      fontSize: 16.sp, color: Colors.black),
+                                ),
+                              ]),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Container(
+                        width: 389.w,
+                        height: 50.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.r),
+                          color: Color(0xffD2D2F1),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Hotspot",
+                                  style: TextStyle(
+                                      fontSize: 14.sp, color: Colors.black),
+                                ),
+                                Container(
+                                  width: 34.w,
+                                  height: 15.h,
+                                  child: Transform.scale(
+                                    transformHitTests: false,
+                                    scale: .6,
+                                    child: CupertinoSwitch(
+                                      trackColor: Color(0xff62639E),
+                                      // This bool value toggles the switch.
+                                      value: switchValue3,
+                                      activeColor: Color(0xff28C93E),
+
+                                      onChanged: (bool? value) {
+                                        // This is called when the user toggles the switch.
+                                        setState(() {
+                                          switchValue3 = value ?? false;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Container(
+                        width: 389.w,
+                        height: 50.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.r),
+                          color: Color(0xffD2D2F1),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Zone",
+                                  style: TextStyle(
+                                      fontSize: 14.sp, color: Colors.black),
+                                ),
+                                Container(
+                                  width: 34.w,
+                                  height: 15.h,
+                                  child: Transform.scale(
+                                    transformHitTests: false,
+                                    scale: .6,
+                                    child: CupertinoSwitch(
+                                      trackColor: Color(0xff62639E),
+                                      // This bool value toggles the switch.
+                                      value: switchValue4,
+                                      activeColor: Color(0xff28C93E),
+
+                                      onChanged: (value) {
+                                        setState(() {
+                                          shaka = 3;
+                                          switchValue4 = value;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: 175.w,
+                            height: 45.h,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5.r),
+                              color: Color(0xffD2D2F1),
+                            ),
+                            child: Row(
+                              children: [
+                                Checkbox(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.r),
+                                    ),
+                                    checkColor: Color(0xff4B4BFF),
+                                    activeColor:
+                                        Color.fromARGB(255, 245, 238, 238),
+                                    value: isCheckedduration,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        isCheckedduration = value!;
+                                      });
+                                    }),
+                                Text(
+                                  "Duration",
+                                  style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: Color(0xff303030)),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 175.w,
+                            height: 45.h,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5.r),
+                              color: Color(0xffD2D2F1),
+                            ),
+                            child: Row(
+                              children: [
+                                Checkbox(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.r),
+                                    ),
+                                    checkColor: Color(0xff4B4BFF),
+                                    activeColor:
+                                        Color.fromARGB(255, 245, 238, 238),
+                                    value: isCheckeddistance,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        isCheckeddistance = value!;
+                                      });
+                                    }),
+                                Text(
+                                  "Distance",
+                                  style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: Color(0xff303030)),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Container(
-                width: 389.w,
-                height: 50.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.r),
-                  color: Color(0xffD2D2F1),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(() => changepassword());
-                          },
-                          child: Text(
-                            "Change Password",
-                            style:
-                                TextStyle(fontSize: 14.sp, color: Colors.black),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+                child: GFAccordion(
+                  titleBorderRadius: BorderRadius.circular(10.r),
+                  contentBackgroundColor: Color(0xffECECFE),
+                  expandedTitleBackgroundColor: Color(0xffA0A1D6),
+                  // margin: EdgeInsets.zero,
+                  // contentPadding: EdgeInsets.symmetric(vertical: 15),
+                  collapsedTitleBackgroundColor: Color(0xffA0A1D6),
+                  showAccordion: false,
+
+                  titleChild: Container(
+                    // width: 389.w,
+                    height: 29.5.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.r),
+                      color: Color(0xffA0A1D6),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              "assets/images/Icon feather-settings.png",
+                              scale: 5,
+                            ),
+                            SizedBox(
+                              width: 28.w,
+                            ),
+                            Text(
+                              "General",
+                              style: TextStyle(
+                                  fontSize: 14.sp, color: Colors.white),
+                            ),
+                          ]),
+                    ),
+                  ),
+
+                  textStyle: TextStyle(color: Colors.amber, fontSize: 16),
+                  collapsedIcon: Padding(
+                    padding: EdgeInsets.only(right: 12),
+                    child: Icon(
+                      Icons.arrow_drop_down_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+
+                  expandedIcon: Padding(
+                    padding: EdgeInsets.only(right: 12),
+                    child: Icon(
+                      Icons.arrow_drop_up_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                  contentChild: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => UserProfile1());
+                        },
+                        child: Container(
+                          width: 389.w,
+                          height: 50.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5.r),
+                            color: Color(0xffD2D2F1),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Profile",
+                                    style: TextStyle(
+                                        fontSize: 14.sp, color: Colors.black),
+                                  ),
+                                ]),
                           ),
                         ),
-                      ]),
-                ),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Container(
-                width: 389.w,
-                height: 50.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.r),
-                  color: Color(0xffD2D2F1),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(() => termsandconditions());
-                          },
-                          child: Text(
-                            "Terms & conditions",
-                            style:
-                                TextStyle(fontSize: 14.sp, color: Colors.black),
-                          ),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Container(
+                        width: 389.w,
+                        height: 50.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.r),
+                          color: Color(0xffD2D2F1),
                         ),
-                      ]),
-                ),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Container(
-                width: 389.w,
-                height: 50.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.r),
-                  color: Color(0xffD2D2F1),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(() => privacypolicy());
-                          },
-                          child: Text(
-                            "Privacy Policy",
-                            style:
-                                TextStyle(fontSize: 14.sp, color: Colors.black),
-                          ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.to(() => changepassword());
+                                  },
+                                  child: Text(
+                                    "Change Password",
+                                    style: TextStyle(
+                                        fontSize: 14.sp, color: Colors.black),
+                                  ),
+                                ),
+                              ]),
                         ),
-                      ]),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Container(
+                        width: 389.w,
+                        height: 50.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.r),
+                          color: Color(0xffD2D2F1),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.to(() => termsandconditions());
+                                  },
+                                  child: Text(
+                                    "Terms & conditions",
+                                    style: TextStyle(
+                                        fontSize: 14.sp, color: Colors.black),
+                                  ),
+                                ),
+                              ]),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Container(
+                        width: 389.w,
+                        height: 50.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.r),
+                          color: Color(0xffD2D2F1),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.to(() => privacypolicy());
+                                  },
+                                  child: Text(
+                                    "Privacy Policy",
+                                    style: TextStyle(
+                                        fontSize: 14.sp, color: Colors.black),
+                                  ),
+                                ),
+                              ]),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              SizedBox(
-                height: 10.h,
-              ),
+              10.verticalSpace,
               Container(
                 width: 389.w,
                 height: 50.h,
@@ -646,9 +826,6 @@ class _settingsState extends State<settings> {
                         ),
                       ]),
                 ),
-              ),
-              SizedBox(
-                height: 10.h,
               ),
             ],
           ),
