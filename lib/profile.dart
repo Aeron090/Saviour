@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 import 'package:savior_app/Address.dart';
 import 'package:savior_app/Signup.dart';
 
@@ -31,6 +32,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       });
     }
   }
+  TextEditingController _textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +175,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 25, right: 25),
                     child: TextFormField(
-                      onTap: () => _selectDate(context),
+                      onTap: () async {
+                        DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(
+                                2000), //DateTime.now() - not to allow to choose before today.
+                            lastDate: DateTime(2101));
+
+                        if (pickedDate != null) {
+                          print(
+                              pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                          String formattedDate =
+                              DateFormat('yyyy-MM-dd').format(pickedDate);
+                          print(
+                              formattedDate); //formatted date output using intl package =>  2021-03-16
+                          //you can implement different kind of Date Format here according to your requirement
+
+                          setState(() {
+                            var _textEditingController;
+                            _textEditingController.text =
+                                formattedDate; //set output date to TextField value.
+                          });
+                        } else {
+                          print("Date is not selected");
+                        }
+                      },
+                      // => _selectDate(context),
                       decoration: InputDecoration(
                           hintText: "$selectedDate",
                           hintStyle:

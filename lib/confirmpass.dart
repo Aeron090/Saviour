@@ -61,6 +61,7 @@ class _ComfirmpasswordState extends State<Comfirmpassword> {
                 Padding(
                   padding: const EdgeInsets.only(left: 25, right: 25),
                   child: TextFormField(
+                    obscureText: true,
                     decoration: InputDecoration(
                       // hintText: ".........",
                       hintStyle: TextStyle(fontSize: 16, color: Colors.white),
@@ -97,6 +98,7 @@ class _ComfirmpasswordState extends State<Comfirmpassword> {
                 Padding(
                   padding: const EdgeInsets.only(left: 25, right: 25),
                   child: TextFormField(
+                    obscureText: true,
                     decoration: InputDecoration(
                       // hintText: ".........",
                       hintStyle: TextStyle(fontSize: 16, color: Colors.white),

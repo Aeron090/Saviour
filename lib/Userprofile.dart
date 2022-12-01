@@ -8,6 +8,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 import 'package:savior_app/Updateprofile.dart';
 import 'package:savior_app/profile.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -36,6 +37,8 @@ class _UserProfile1State extends State<UserProfile1> {
       });
     }
   }
+
+  TextEditingController _textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -256,7 +259,33 @@ class _UserProfile1State extends State<UserProfile1> {
                       ],
                     ),
                     child: TextFormField(
-                      onTap: () => _selectDate(context),
+                      // focusNode: AlwaysDisabledFocusNode(),
+                      controller: _textEditingController,
+                      onTap: () async {
+                        DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(
+                                2000), //DateTime.now() - not to allow to choose before today.
+                            lastDate: DateTime(2101));
+
+                        if (pickedDate != null) {
+                          print(
+                              pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                          String formattedDate =
+                              DateFormat('yyyy-MM-dd').format(pickedDate);
+                          print(
+                              formattedDate); //formatted date output using intl package =>  2021-03-16
+                          //you can implement different kind of Date Format here according to your requirement
+
+                          setState(() {
+                            _textEditingController.text =
+                                formattedDate; //set output date to TextField value.
+                          });
+                        } else {
+                          print("Date is not selected");
+                        }
+                      },
                       decoration: InputDecoration(
                           hintText: "15 Sep, 1993",
                           hintStyle: TextStyle(

@@ -158,6 +158,7 @@ class _SignupscreenState extends State<Signupscreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 25, right: 25),
                     child: TextFormField(
+                      obscureText: true,
                       decoration: InputDecoration(
                           hintText: "........",
                           hintStyle:
@@ -197,6 +198,7 @@ class _SignupscreenState extends State<Signupscreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 25, right: 25),
                     child: TextFormField(
+                      obscureText: true,
                       decoration: InputDecoration(
                           hintText: "Abc123@123",
                           hintStyle:
